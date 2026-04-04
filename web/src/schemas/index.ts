@@ -3,6 +3,7 @@ import { z } from 'zod';
 export const testSchema = z.object({
   testId: z.string(),
   lang: z.string(),
+  fullName: z.string().min(1).max(500),
   invalid: z.boolean(),
   answers: z
     .array(
@@ -19,10 +20,12 @@ export const testSchema = z.object({
   dateStamp: z.date()
 });
 
+const objectId = /^[0-9a-fA-F]{24}$/;
+const uuid =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export const testId = z.object({
   id: z
     .string()
-    .regex(/^[0-9a-fA-F]{24}$/, 'Invalid hexadecimal ID')
-    .min(24)
-    .max(24)
+    .refine((s) => objectId.test(s) || uuid.test(s), 'Invalid result ID')
 });

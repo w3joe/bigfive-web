@@ -15,15 +15,10 @@ const indonesian = {
     },
     title: 'Tes Kepribadian Lima Besar',
     call_to_action: 'Ikuti tes gratis sekarang',
+    github_cta: 'OpenFlo on GitHub',
+    onflow_cta: 'Visit Onflow',
     no_registration: '* Tidak perlu registrasi',
     tests_taken: 'Lebih dari <green>{n}</green> orang telah mengikuti tes',
-    compare: {
-      title: 'Bandingkan diri Anda dengan orang lain',
-      text1:
-        'Bandingkan diri Anda dengan pasangan, kolega, teman, atau keluarga Anda.',
-      text2: 'Pelajari bagaimana Anda berbeda dari orang lain di lima domain:',
-      action: 'Lihat langsung beraksi'
-    },
     share:
       'Bagikan dengan teman-teman Anda dan cari tahu seberapa kompatibel Anda',
     cards: {
@@ -56,6 +51,14 @@ const indonesian = {
       result:
         'Setelah Anda menyelesaikan tes, Anda akan menerima laporan kepribadian terperinci di domain berikut: ',
       tests_taken: 'tes yang dilakukan sejauh ini'
+    },
+    thanks: {
+      title: 'Thank you for being part of OpenFlo',
+      body:
+        'Thank you for taking the Big Five personality test with us—or for considering it. Everyone who shows up here helps us shape a more thoughtful, human-centered OpenFlo.',
+      invite:
+        'We would love to learn more about your experience. Email us and tell us what brought you here, what worked, or what felt missing—we may follow up with a few short questions, and we read every reply.',
+      cta: 'Share a bit more by email'
     }
   },
   about: {
@@ -68,12 +71,10 @@ const indonesian = {
   toolbar: {
     home: 'Rumah',
     result: 'Hasil',
-    compare: 'Bandingkan',
     articles: 'Artikel',
     privacy: 'Privasi',
     about: 'Tentang',
     see_results: 'Lihat hasil Anda',
-    compare_with: 'Bandingkan dengan orang lain',
     faq: 'FAQ'
   },
   facets: {
@@ -128,7 +129,63 @@ const indonesian = {
     next: 'lanjut',
     back: 'kembali',
     more: 'lebih',
-    seeResults: 'lihat hasilnya'
+    seeResults: 'lihat hasilnya',
+    fullNameLabel: 'Full name',
+    fullNamePlaceholder: 'Enter your full name',
+    fullNameRequired: 'Please enter your full name (at least 2 characters) to continue',
+    nameStepTitle: 'Before you begin',
+    nameStepHint:
+      'All fields are required before the 120 questions. Your answers are stored with your result when you finish.',
+    continueToTest: 'Continue to the test',
+    intake_required_marker: '*',
+    intake_all_required: 'Please complete every required field on this step before continuing.',
+    intake_middle_name_help:
+      'If you have no middle name, enter N/A or —.',
+    intake_incomplete_profile:
+      'Your saved profile is incomplete. Clear saved progress and start again from the beginning to enter every required field.',
+    intake_clear_restart: 'Clear saved progress and restart',
+    intake_step_progress: 'Step {step} of {total}',
+    intake_step_name: 'Your name',
+    intake_step_demo: 'Demographics',
+    intake_step_location: 'Location',
+    intake_step_interests: 'Skills & interests',
+    intake_first_name: 'First name',
+    intake_middle_name: 'Middle name',
+    intake_last_name: 'Last name',
+    intake_optional: 'Optional',
+    intake_next: 'Next',
+    intake_back: 'Back',
+    intake_age: 'Age',
+    intake_age_placeholder: 'e.g. 32',
+    intake_sex: 'Sex / gender',
+    intake_sex_female: 'Female',
+    intake_sex_male: 'Male',
+    intake_sex_non_binary: 'Non-binary',
+    intake_sex_other: 'Other',
+    intake_prefer_not: 'Prefer not to say',
+    intake_marital: 'Marital or relationship status',
+    intake_marital_single: 'Single',
+    intake_marital_partnered: 'Partnered / in a relationship',
+    intake_marital_married: 'Married',
+    intake_marital_divorced: 'Divorced or separated',
+    intake_marital_widowed: 'Widowed',
+    intake_occupation: 'Occupation or role',
+    intake_education: 'Highest education level',
+    intake_edu_less_hs: 'Less than high school',
+    intake_edu_hs: 'High school or equivalent',
+    intake_edu_some_college: 'Some college',
+    intake_edu_bachelor: "Bachelor's degree",
+    intake_edu_master: "Master's degree",
+    intake_edu_doctorate: 'Doctorate / professional degree',
+    intake_edu_vocational: 'Vocational / trade training',
+    intake_ethnic: 'Ethnic or cultural background',
+    intake_ethnic_placeholder: 'How you describe your background',
+    intake_city: 'City',
+    intake_country: 'Country',
+    intake_skills: 'Skills & expertise',
+    intake_hobbies: 'Hobbies & interests',
+    intake_list_hint: 'Comma-separated only, e.g. Python, public speaking, design',
+    intake_select_placeholder: 'Choose one'
   },
   big_five: {
     title: 'Apakah lima besar itu?',
@@ -176,27 +233,11 @@ const indonesian = {
         'Baca lebih lanjut tentang domain Neurotisisme dalam model b5'
     }
   },
-  getCompare: {
-    title: 'Bandingkan orang atau tim',
-    description1:
-      'Bandingkan hasil tes kepribadian bigfive dengan banyak orang.',
-    description2: 'Ketik ID yang Anda dapatkan dari hasil tes, mis.',
-    description3: 'di kolom ID-input',
-    needToAddPeople: 'Anda perlu menambahkan orang untuk membandingkan mereka',
-    addAnother: 'Tambahkan orang lain',
-    addPerson: 'Tambahkan Orang',
-    comparePeople: 'bandingkan orang',
-    nameOfPerson: 'Nama orang ini',
-    urlOrId: 'URL atau ID untuk perbandingan',
-    name: 'Nama'
-  },
   results: {
     theBigFive: 'Lima Besar',
     score: 'skor',
     important: 'Penting!',
     saveResults: 'Simpan ID berikut untuk melihat hasilnya nanti atau',
-    compare: 'membandingkan',
-    toOthers: 'diri Anda kepada orang lain',
     seo: {
       title: 'Hasil saya dari tes kepribadian BigFive',
       description:

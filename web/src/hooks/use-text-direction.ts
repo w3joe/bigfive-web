@@ -1,8 +1,11 @@
+'use client';
+
 import { isRtlLang } from 'rtl-detect';
 import { useLocale } from 'next-intl';
 
-export default function useTextDirection(locale: string) {
+/** Client-only: resolves direction when `locale` may be omitted. */
+export default function useTextDirection(locale?: string) {
   const defaultLocale = useLocale();
-  if (!locale) locale = defaultLocale;
-  return isRtlLang(locale) ? 'rtl' : 'ltr';
+  const resolved = locale || defaultLocale;
+  return isRtlLang(resolved) ? 'rtl' : 'ltr';
 }

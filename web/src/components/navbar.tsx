@@ -19,7 +19,7 @@ import { siteConfig } from '@/config/site';
 import clsx from 'clsx';
 
 import { ThemeSwitch } from '@/components/theme-switch';
-import { TwitterIcon, GithubIcon, Logo } from '@/components/icons';
+import { GithubIcon, GlobeIcon, Logo } from '@/components/icons';
 import { Link as NextLink } from '../navigation';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -58,6 +58,9 @@ export const Navbar = ({ navItems, navMenuItems }: NavbarProps) => {
             aria-label='Home'
           >
             <Logo />
+            <span className='font-semibold text-lg tracking-tight text-foreground'>
+              {siteConfig.wordmark}
+            </span>
           </NextLink>
         </NavbarBrand>
         <div className='hidden md:flex gap-4 justify-start ml-2'>
@@ -84,10 +87,14 @@ export const Navbar = ({ navItems, navMenuItems }: NavbarProps) => {
         justify='end'
       >
         <NavbarItem className='hidden sm:flex gap-2'>
-          <Link isExternal href={siteConfig.links.twitter} aria-label='Twitter'>
-            <TwitterIcon className='text-default-500' />
+          <Link
+            isExternal
+            href={siteConfig.links.onflow}
+            aria-label='Onflow'
+          >
+            <GlobeIcon className='text-default-500' />
           </Link>
-          <Link isExternal href={siteConfig.links.github} aria-label='Github'>
+          <Link isExternal href={siteConfig.links.github} aria-label='OpenFlo on GitHub'>
             <GithubIcon className='text-default-500' />
           </Link>
           <ThemeSwitch />

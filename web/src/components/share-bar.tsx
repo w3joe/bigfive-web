@@ -5,6 +5,7 @@ import { CopyIcon, FacebookIcon, PDFIcon, TwitterIcon } from './icons';
 import { Link as NextUiLink } from '@nextui-org/link';
 import { Report } from '@/actions/index';
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
+import { basePath } from '@/config/site';
 
 interface ShareBarProps {
   report: Report;
@@ -26,7 +27,7 @@ export default function ShareBar({ report }: ShareBarProps) {
           variant='light'
           as={NextUiLink}
           isExternal
-          href={`https://www.facebook.com/sharer/sharer.php?u=https://bigfive-test.com/result/${report.id}`}
+          href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${basePath}/result/${report.id}`)}`}
         >
           <FacebookIcon size={48} />
         </Button>
@@ -40,7 +41,7 @@ export default function ShareBar({ report }: ShareBarProps) {
           variant='light'
           target='_blank'
           as={NextUiLink}
-          href={`https://twitter.com/intent/tweet?text=See my personality traits!&url=https://bigfive-test.com/result/${report.id}`}
+          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('See my OpenFlo personality results!')}&url=${encodeURIComponent(`${basePath}/result/${report.id}`)}`}
         >
           <TwitterIcon size={42} />
         </Button>
@@ -64,7 +65,7 @@ export default function ShareBar({ report }: ShareBarProps) {
           radius='full'
           size='md'
           variant='light'
-          onPress={handleCopy(`https://bigfive-test.com/result/${report.id}`)}
+          onPress={handleCopy(`${basePath}/result/${report.id}`)}
         >
           <CopyIcon size={42} />
         </Button>

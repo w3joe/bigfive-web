@@ -2,9 +2,9 @@ import { getTranslations } from 'next-intl/server';
 
 export type SiteConfig = typeof siteConfig;
 
-export const basePath = 'https://bigfive-test.com';
+export const basePath = 'https://runonflow.com';
 
-export const supportEmail = 'bigfive-test@rubynor.com';
+export const supportEmail = 'hello@runonflow.com';
 
 export type Language = {
   code: string;
@@ -54,10 +54,11 @@ export const languages: Language[] = [
 export const locales = languages.map((lang) => lang.code) as string[];
 
 export const siteConfig = {
-  name: 'Big Five Personality Test',
-  creator: '@maccyber',
+  name: 'OpenFlo',
+  wordmark: 'OpenFlo',
+  creator: '@OnflowAI',
   description:
-    'Learn to know yourself better with a free, open-source personality test.',
+    'Open-source Big Five personality assessment from the Onflow team. Take the test, see results, and compare profiles—free and private.',
   navItems: [
     {
       label: 'home',
@@ -66,18 +67,6 @@ export const siteConfig = {
     {
       label: 'result',
       href: '/result'
-    },
-    {
-      label: 'compare',
-      href: '/compare'
-    },
-    {
-      label: 'articles',
-      href: '/articles'
-    },
-    {
-      label: 'about',
-      href: '/about'
     }
   ],
   navMenuItems: [
@@ -90,20 +79,8 @@ export const siteConfig = {
       href: '/result'
     },
     {
-      label: 'compare_with',
-      href: '/compare'
-    },
-    {
-      label: 'articles',
-      href: '/articles'
-    },
-    {
       label: 'privacy',
       href: '/privacy'
-    },
-    {
-      label: 'about',
-      href: '/about'
     },
     {
       label: 'faq',
@@ -116,16 +93,8 @@ export const siteConfig = {
       href: '/'
     },
     {
-      label: 'articles',
-      href: '/articles'
-    },
-    {
       label: 'privacy',
       href: '/privacy'
-    },
-    {
-      label: 'about',
-      href: '/about'
     },
     {
       label: 'faq',
@@ -133,10 +102,8 @@ export const siteConfig = {
     }
   ],
   links: {
-    github: 'https://github.com/rubynor/bigfive-web',
-    twitter: 'https://twitter.com/rubynor',
-    linkedIn: 'https://www.linkedin.com/company/rubynor-as/',
-    facebook: 'https://www.facebook.com/rubynorno'
+    github: 'https://github.com/Onflow-AI/OpenFlo',
+    onflow: 'https://runonflow.com'
   }
 };
 

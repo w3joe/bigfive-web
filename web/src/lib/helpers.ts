@@ -5,8 +5,12 @@ export const formatId = (id: string): string => {
     .replaceAll(' ', '');
 };
 
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+/** MongoDB ObjectId (legacy links) or UUID (Supabase `survey_results.id`). */
 export const validId: (id: string) => boolean = (id: string) =>
-  /^[0-9a-fA-F]{24}$/.test(id);
+  /^[0-9a-fA-F]{24}$/.test(id) || UUID_RE.test(id);
 
 export const formatAndValidateId = (id: string): boolean => {
   const formattedId = formatId(id);

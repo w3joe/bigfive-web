@@ -5,13 +5,13 @@ import { Providers } from '../providers';
 import { Navbar } from '@/components/navbar';
 import clsx from 'clsx';
 import Footer from '@/components/footer';
-import { ThemeProviderProps } from 'next-themes/dist/types';
+import type { ThemeProviderProps } from 'next-themes';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { basePath, getNavItems, locales, siteConfig } from '@/config/site';
-import { unstable_setRequestLocale } from 'next-intl/server';
-import { getTranslations } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/react';
-import useTextDirection from '@/hooks/use-text-direction';
+import { isRtlLang } from 'rtl-detect';
 import Script from 'next/script';
 import CookieBanner from '@/components/cookie-consent';
 
@@ -20,10 +20,11 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({
-  params: { locale }
+  params
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'frontpage' });
   const s = await getTranslations({ locale, namespace: 'seo' });
   const alternatesLang = locales.reduce((a, v) => ({ ...a, [v]: `/${v}` }), {});
@@ -34,13 +35,13 @@ export async function generateMetadata({
     },
     description: t('seo.description'),
     keywords: s('keywords'),
-    authors: [{ name: 'Jonas Enge', url: 'https://bigfive-test.com' }],
+    authors: [{ name: 'Onflow', url: basePath }],
     icons: {
       icon: '/favicon.ico',
       shortcut: '/favicon-16x16.png',
       apple: '/apple-touch-icon.png'
     },
-    metadataBase: new URL('https://bigfive-test.com'),
+    metadataBase: new URL(basePath),
     // alternates: {
     //   canonical: '/',
     //   languages: alternatesLang
@@ -52,7 +53,7 @@ export async function generateMetadata({
       description: t('seo.description'),
       images: {
         url: `${basePath}/og-image.png`,
-        alt: 'People comparing personality tests'
+        alt: 'OpenFlo personality assessment'
       }
     },
     twitter: {
@@ -63,7 +64,7 @@ export async function generateMetadata({
       creator: siteConfig.creator,
       images: {
         url: `${basePath}/og-image.png`,
-        alt: 'People comparing personality tests'
+        alt: 'OpenFlo personality assessment'
       }
     }
   };
@@ -80,18 +81,20 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({
   children,
-  params: { locale }
+  params
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const gaId = process.env.NEXT_PUBLIC_ANALYTICS_ID || '';
-  unstable_setRequestLocale(locale);
-  const direction = useTextDirection(locale);
+  setRequestLocale(locale);
+  const direction = isRtlLang(locale) ? 'rtl' : 'ltr';
 
   const navItems = await getNavItems({ locale, linkType: 'navItems' });
   const navMenuItems = await getNavItems({ locale, linkType: 'navMenuItems' });
   const footerLinks = await getNavItems({ locale, linkType: 'footerLinks' });
+  const messages = await getMessages({ locale });
 
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
@@ -102,24 +105,23 @@ export default async function RootLayout({
           fontSans.variable
         )}
       >
-        <Providers
-          themeProps={
-            { attribute: 'class', defaultTheme: 'light' } as ThemeProviderProps
-          }
-        >
-          <div className='relative flex flex-col h-screen'>
-            <Navbar navItems={navItems} navMenuItems={navMenuItems} />
-            <main className='container mx-auto max-w-7xl pt-16 px-6 flex-grow'>
-              {children}
-              <CookieBanner />
-            </main>
-            <Footer footerLinks={footerLinks} />
-          </div>
-        </Providers>
-        <Script
-          src='https://bigfive-test.com/sw.js'
-          strategy='beforeInteractive'
-        />
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Providers
+            themeProps={
+              { attribute: 'class', defaultTheme: 'light' } as ThemeProviderProps
+            }
+          >
+            <div className='relative flex flex-col h-screen'>
+              <Navbar navItems={navItems} navMenuItems={navMenuItems} />
+              <main className='container mx-auto max-w-7xl pt-16 px-6 flex-grow'>
+                {children}
+                <CookieBanner />
+              </main>
+              <Footer footerLinks={footerLinks} />
+            </div>
+          </Providers>
+        </NextIntlClientProvider>
+        <Script src={`${basePath}/sw.js`} strategy='beforeInteractive' />
         <Analytics />
       </body>
       <GoogleAnalytics gaId={gaId} />

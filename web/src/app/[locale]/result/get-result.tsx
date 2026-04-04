@@ -49,7 +49,7 @@ export const GetResultPage = ({
           type='text'
           label='ID'
           labelPlacement='outside'
-          placeholder='58a70606a835c400c8b38e84'
+          placeholder='550e8400-e29b-41d4-a716-446655440000'
           startContent={
             <ResultIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
           }

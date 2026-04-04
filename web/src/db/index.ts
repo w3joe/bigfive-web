@@ -1,23 +1,28 @@
-import mongodb, { MongoClient } from 'mongodb';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-const url = process.env.DB_URL;
-if (!url) {
-  throw new Error(
-    'Please define the DB_URL environment variable inside .env.local'
-  );
-}
+let cachedClient: SupabaseClient | null = null;
 
-const dbName = process.env.DB_NAME || 'results';
+/**
+ * Server-only admin client (service role). Bypasses RLS; never import in client components.
+ */
+export function getSupabaseAdmin(): SupabaseClient {
+  if (cachedClient) return cachedClient;
 
-const mongoClient = new MongoClient(url);
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-let cachedDb: mongodb.Db | null = null;
+  if (!url || !serviceRoleKey) {
+    throw new Error(
+      'Set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local'
+    );
+  }
 
-export async function connectToDatabase() {
-  if (cachedDb) return cachedDb;
+  cachedClient = createClient(url, serviceRoleKey, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false
+    }
+  });
 
-  const client = await mongoClient.connect();
-  const db = client.db(dbName);
-  cachedDb = db;
-  return db;
+  return cachedClient;
 }

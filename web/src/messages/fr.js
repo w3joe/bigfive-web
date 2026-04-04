@@ -15,16 +15,10 @@ const french = {
     },
     title: 'Test de personnalité Big Five',
     call_to_action: 'Faites le test gratuit maintenant',
+    github_cta: 'OpenFlo on GitHub',
+    onflow_cta: 'Visit Onflow',
     no_registration: '* Aucune inscription requise',
     tests_taken: 'Plus de <green>{n}</green> personnes ont passé le test',
-    compare: {
-      title: 'Comparez-vous aux autres',
-      text1:
-        'Comparez-vous avec votre partenaire, vos collègues, vos amis ou votre famille.',
-      text2:
-        'Découvrez en quoi vous vous différenciez des autres dans les cinq domaines:',
-      action: 'Regardez-le en direct en action'
-    },
     share: 'Partagez avec vos amis et découvrez votre compatibilité',
     cards: {
       open: {
@@ -56,6 +50,14 @@ const french = {
       result:
         'After you have completed the test you will receive a detailed personality report in the following domains:',
       tests_taken: 'tests taken so far'
+    },
+    thanks: {
+      title: 'Thank you for being part of OpenFlo',
+      body:
+        'Thank you for taking the Big Five personality test with us—or for considering it. Everyone who shows up here helps us shape a more thoughtful, human-centered OpenFlo.',
+      invite:
+        'We would love to learn more about your experience. Email us and tell us what brought you here, what worked, or what felt missing—we may follow up with a few short questions, and we read every reply.',
+      cta: 'Share a bit more by email'
     }
   },
   about: {
@@ -68,12 +70,10 @@ const french = {
   toolbar: {
     home: 'Home',
     result: 'Résultat',
-    compare: 'Comparer',
     articles: 'Des articles',
     privacy: 'Intimité',
     about: 'Sur',
     see_results: 'Voir vos résultats',
-    compare_with: 'Comparez avec les autres',
     faq: 'FAQ'
   },
   facets: {
@@ -127,7 +127,63 @@ const french = {
     next: 'prochain',
     back: 'retour',
     more: 'plus',
-    seeResults: 'see results'
+    seeResults: 'see results',
+    fullNameLabel: 'Full name',
+    fullNamePlaceholder: 'Enter your full name',
+    fullNameRequired: 'Please enter your full name (at least 2 characters) to continue',
+    nameStepTitle: 'Before you begin',
+    nameStepHint:
+      'All fields are required before the 120 questions. Your answers are stored with your result when you finish.',
+    continueToTest: 'Continue to the test',
+    intake_required_marker: '*',
+    intake_all_required: 'Please complete every required field on this step before continuing.',
+    intake_middle_name_help:
+      'If you have no middle name, enter N/A or —.',
+    intake_incomplete_profile:
+      'Your saved profile is incomplete. Clear saved progress and start again from the beginning to enter every required field.',
+    intake_clear_restart: 'Clear saved progress and restart',
+    intake_step_progress: 'Step {step} of {total}',
+    intake_step_name: 'Your name',
+    intake_step_demo: 'Demographics',
+    intake_step_location: 'Location',
+    intake_step_interests: 'Skills & interests',
+    intake_first_name: 'First name',
+    intake_middle_name: 'Middle name',
+    intake_last_name: 'Last name',
+    intake_optional: 'Optional',
+    intake_next: 'Next',
+    intake_back: 'Back',
+    intake_age: 'Age',
+    intake_age_placeholder: 'e.g. 32',
+    intake_sex: 'Sex / gender',
+    intake_sex_female: 'Female',
+    intake_sex_male: 'Male',
+    intake_sex_non_binary: 'Non-binary',
+    intake_sex_other: 'Other',
+    intake_prefer_not: 'Prefer not to say',
+    intake_marital: 'Marital or relationship status',
+    intake_marital_single: 'Single',
+    intake_marital_partnered: 'Partnered / in a relationship',
+    intake_marital_married: 'Married',
+    intake_marital_divorced: 'Divorced or separated',
+    intake_marital_widowed: 'Widowed',
+    intake_occupation: 'Occupation or role',
+    intake_education: 'Highest education level',
+    intake_edu_less_hs: 'Less than high school',
+    intake_edu_hs: 'High school or equivalent',
+    intake_edu_some_college: 'Some college',
+    intake_edu_bachelor: "Bachelor's degree",
+    intake_edu_master: "Master's degree",
+    intake_edu_doctorate: 'Doctorate / professional degree',
+    intake_edu_vocational: 'Vocational / trade training',
+    intake_ethnic: 'Ethnic or cultural background',
+    intake_ethnic_placeholder: 'How you describe your background',
+    intake_city: 'City',
+    intake_country: 'Country',
+    intake_skills: 'Skills & expertise',
+    intake_hobbies: 'Hobbies & interests',
+    intake_list_hint: 'Comma-separated only, e.g. Python, public speaking, design',
+    intake_select_placeholder: 'Choose one'
   },
   big_five: {
     title: 'What are the big five?',
@@ -173,29 +229,12 @@ const french = {
       description: 'Read more about the Neuroticism domain in the b5 model'
     }
   },
-  getCompare: {
-    title: 'Comparez des personnes ou des équipes',
-    description1:
-      'Comparez les résultats du test de personnalité bigfive avec plusieurs personnes.',
-    description2:
-      "Tapez l'ID que vous avez obtenu à partir des résultats du test, c'est-à-dire",
-    description3: 'dans le champ de saisie ID',
-    needToAddPeople: 'Vous devez ajouter des personnes pour les comparer',
-    addAnother: 'Ajouter une autre personne',
-    addPerson: 'Ajouter une personne',
-    comparePeople: 'comparer les gens',
-    nameOfPerson: 'Nom de cette personne',
-    urlOrId: 'URL ou ID pour comparaison',
-    name: 'Nom'
-  },
   results: {
     theBigFive: 'Les cinq grands',
     score: 'But',
     important: 'Important!',
     saveResults:
       "Enregistrez l'ID suivant pour voir les résultats plus tard ou",
-    compare: 'comparer',
-    toOthers: 'toi-même aux autres',
     seo: {
       title: 'My results from the BigFive personality test',
       description:

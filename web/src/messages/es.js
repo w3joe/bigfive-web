@@ -15,15 +15,10 @@ const spanish = {
     },
     title: 'Prueba de personalidad Big Five',
     call_to_action: 'Haz la prueba gratis ahora',
+    github_cta: 'OpenFlo on GitHub',
+    onflow_cta: 'Visit Onflow',
     no_registration: '*No es necesario registrarse',
     tests_taken: 'Más de <green>{n}</green> personas han realizado la prueba',
-    compare: {
-      title: 'Compárese con los demás',
-      text1: 'Compárese con su pareja, colegas, amigos o familiares.',
-      text2:
-        'Descubra en qué se diferencia de otras personas en los cinco dominios:',
-      action: 'Míralo en vivo en acción'
-    },
     share: 'Comparte con tus amigos y descubre qué tan compatible eres',
     cards: {
       open: {
@@ -55,6 +50,14 @@ el inventario es de<i>Johnson's (2014) IPIP NEO-PI-R de 120 elementos</i>.`,
       result:
         'Una vez que haya completado la prueba, recibirá un informe de personalidad detallado en los siguientes dominios:',
       tests_taken: 'pruebas tomadas hasta ahora'
+    },
+    thanks: {
+      title: 'Thank you for being part of OpenFlo',
+      body:
+        'Thank you for taking the Big Five personality test with us—or for considering it. Everyone who shows up here helps us shape a more thoughtful, human-centered OpenFlo.',
+      invite:
+        'We would love to learn more about your experience. Email us and tell us what brought you here, what worked, or what felt missing—we may follow up with a few short questions, and we read every reply.',
+      cta: 'Share a bit more by email'
     }
   },
   about: {
@@ -67,12 +70,10 @@ el inventario es de<i>Johnson's (2014) IPIP NEO-PI-R de 120 elementos</i>.`,
   toolbar: {
     home: 'Inicio',
     result: 'Resultado',
-    compare: 'Comparar',
     articles: 'Artículos',
     privacy: 'Privacidad',
     about: 'Acerca de',
     see_results: 'Ver sus resultados',
-    compare_with: 'Comparar con otros',
     faq: 'FAQ'
   },
   facets: {
@@ -126,7 +127,63 @@ el inventario es de<i>Johnson's (2014) IPIP NEO-PI-R de 120 elementos</i>.`,
     next: 'siguiente',
     back: 'atrás',
     more: 'más',
-    seeResults: 'ver resultados'
+    seeResults: 'ver resultados',
+    fullNameLabel: 'Full name',
+    fullNamePlaceholder: 'Enter your full name',
+    fullNameRequired: 'Please enter your full name (at least 2 characters) to continue',
+    nameStepTitle: 'Before you begin',
+    nameStepHint:
+      'All fields are required before the 120 questions. Your answers are stored with your result when you finish.',
+    continueToTest: 'Continue to the test',
+    intake_required_marker: '*',
+    intake_all_required: 'Please complete every required field on this step before continuing.',
+    intake_middle_name_help:
+      'If you have no middle name, enter N/A or —.',
+    intake_incomplete_profile:
+      'Your saved profile is incomplete. Clear saved progress and start again from the beginning to enter every required field.',
+    intake_clear_restart: 'Clear saved progress and restart',
+    intake_step_progress: 'Step {step} of {total}',
+    intake_step_name: 'Your name',
+    intake_step_demo: 'Demographics',
+    intake_step_location: 'Location',
+    intake_step_interests: 'Skills & interests',
+    intake_first_name: 'First name',
+    intake_middle_name: 'Middle name',
+    intake_last_name: 'Last name',
+    intake_optional: 'Optional',
+    intake_next: 'Next',
+    intake_back: 'Back',
+    intake_age: 'Age',
+    intake_age_placeholder: 'e.g. 32',
+    intake_sex: 'Sex / gender',
+    intake_sex_female: 'Female',
+    intake_sex_male: 'Male',
+    intake_sex_non_binary: 'Non-binary',
+    intake_sex_other: 'Other',
+    intake_prefer_not: 'Prefer not to say',
+    intake_marital: 'Marital or relationship status',
+    intake_marital_single: 'Single',
+    intake_marital_partnered: 'Partnered / in a relationship',
+    intake_marital_married: 'Married',
+    intake_marital_divorced: 'Divorced or separated',
+    intake_marital_widowed: 'Widowed',
+    intake_occupation: 'Occupation or role',
+    intake_education: 'Highest education level',
+    intake_edu_less_hs: 'Less than high school',
+    intake_edu_hs: 'High school or equivalent',
+    intake_edu_some_college: 'Some college',
+    intake_edu_bachelor: "Bachelor's degree",
+    intake_edu_master: "Master's degree",
+    intake_edu_doctorate: 'Doctorate / professional degree',
+    intake_edu_vocational: 'Vocational / trade training',
+    intake_ethnic: 'Ethnic or cultural background',
+    intake_ethnic_placeholder: 'How you describe your background',
+    intake_city: 'City',
+    intake_country: 'Country',
+    intake_skills: 'Skills & expertise',
+    intake_hobbies: 'Hobbies & interests',
+    intake_list_hint: 'Comma-separated only, e.g. Python, public speaking, design',
+    intake_select_placeholder: 'Choose one'
   },
   big_five: {
     title: 'Que es Big Five?',
@@ -171,28 +228,11 @@ el inventario es de<i>Johnson's (2014) IPIP NEO-PI-R de 120 elementos</i>.`,
       description: 'Leer más sobre el dominio de Neuroticismo en el modelo b5'
     }
   },
-  getCompare: {
-    title: 'Comparar personas o equipos',
-    description1:
-      'Compare los resultados del test de personalidad Big Five con varias personas.',
-    description2:
-      'Escriba la identificación que obtuvo de los resultados de la prueba, es decir, ',
-    description3: 'en el campo de entrada de ID ',
-    needToAddPeople: 'Necesitas agregar personas para compararlas',
-    addAnother: 'Agregar otra persona',
-    addPerson: 'Agregar persona',
-    comparePeople: 'comparar personas',
-    nameOfPerson: 'Nombre de esta persona',
-    urlOrId: 'URL o ID para comparar',
-    name: 'Nombre'
-  },
   results: {
     theBigFive: 'Los Big Five',
     score: 'Puntuación',
     important: 'Importante!',
     saveResults: 'Guarde la siguiente ID para ver los resultados más tarde o ',
-    compare: 'comparar',
-    toOthers: 'usted mismo a los demás',
     seo: {
       title: 'Mis resultados de la prueba de personalidad Big Five',
       description:

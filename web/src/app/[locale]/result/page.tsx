@@ -1,15 +1,15 @@
 import { title } from '@/components/primitives';
-import { useTranslations } from 'next-intl';
 import { GetResultPage } from './get-result';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 interface Props {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
-export default function ResultPage({ params: { locale } }: Props) {
-  unstable_setRequestLocale(locale);
-  const t = useTranslations('getResult');
+export default async function ResultPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: 'getResult' });
 
   return (
     <div className='h-[calc(60vh)]'>

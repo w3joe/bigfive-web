@@ -22,31 +22,24 @@ Install [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable)
 npm install --global yarn
 ```
 
-Install docker and docker-compose
-
-The results are saved to a [mongodb](https://www.mongodb.com/) database, so for a full test you either need a running mongodb or an instance at [mlab](https://mlab.com/)
+Survey results and feedback are stored in [Supabase](https://supabase.com/) (Postgres). Create a project, run the SQL migration in `supabase/migrations/`, then set the environment variables below.
 
 ## Development
 
-add .env.local file
+Copy `.env.example` to `.env.local` and fill in your Supabase project URL and **service role** key (server actions use the service role; keep that key out of client code and public repos).
 
 ```
 NEXT_PUBLIC_ENV=development
-DB_URL=mongodb://root:example@localhost:27017
-DB_NAME=b5
-DB_COLLECTION=results
+NEXT_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 ```
+
+Optional: `NEXT_PUBLIC_SUPABASE_ANON_KEY` if you add client-side Supabase later.
 
 Run the setup script to install all dependencies
 
 ```
 yarn
-```
-
-Start mongodb server
-
-```
-docker-compose up -d
 ```
 
 Run the development server

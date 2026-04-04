@@ -2,14 +2,14 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Bigfive web',
-    short_name: 'Bigfive',
+    name: 'OpenFlo Personality Test',
+    short_name: 'OpenFlo',
     description:
-      'Learn to know yourself better with a free, open-source personality test.',
+      'Open-source Big Five personality assessment from the Onflow team.',
     start_url: '/',
     display: 'standalone',
     background_color: '#FFFFFF',
-    theme_color: '#ff1cf7',
+    theme_color: '#2563eb',
     icons: [
       {
         src: '/favicon.ico',

@@ -15,16 +15,10 @@ const deutsh = {
     },
     title: 'Big Five Persönlichkeitstest',
     call_to_action: 'Nehmen Sie jetzt teil',
+    github_cta: 'OpenFlo on GitHub',
+    onflow_cta: 'Visit Onflow',
     no_registration: '* Keine Registrierung erforderlich',
     tests_taken: 'Über <green>{n}</green> Menschen haben bisher teilgenommen',
-    compare: {
-      title: 'Vergleichen Sie sich mit anderen',
-      text1:
-        'Vergleichen Sie sich mit Ihrem Partner, Kollegen, Freunden oder Familie.',
-      text2:
-        'Erfahren Sie, wie Sie sich in den fünf Dimensionen von anderen unterscheiden:',
-      action: 'Sehen Sie selbst'
-    },
     share:
       'Teilen Sie Ihre Ergebnisse mit Freunden und finden Sie heraus wie kompatibel Sie sind',
     cards: {
@@ -57,6 +51,14 @@ inventory is from <i>Johnson's (2014) 120-item IPIP NEO-PI-R</i>.`,
       result:
         'Nach dem vervollständigen des Tests erhalten Sie eine detaillierte  Beschreibung Ihrer Persönlichkeit in den folgenden Dimensionen:',
       tests_taken: 'Bisher gemachte Tests'
+    },
+    thanks: {
+      title: 'Thank you for being part of OpenFlo',
+      body:
+        'Thank you for taking the Big Five personality test with us—or for considering it. Everyone who shows up here helps us shape a more thoughtful, human-centered OpenFlo.',
+      invite:
+        'We would love to learn more about your experience. Email us and tell us what brought you here, what worked, or what felt missing—we may follow up with a few short questions, and we read every reply.',
+      cta: 'Share a bit more by email'
     }
   },
   about: {
@@ -69,12 +71,10 @@ inventory is from <i>Johnson's (2014) 120-item IPIP NEO-PI-R</i>.`,
   toolbar: {
     home: 'Startseite',
     result: 'Ergebnisse',
-    compare: 'Vergleichen',
     articles: 'Artikel',
     privacy: 'Datenschutz',
     about: 'Über uns',
     see_results: 'Sehen Sie Ihre Ergebnisse',
-    compare_with: 'Mit anderen vergleichen',
     faq: 'FAQ'
   },
   facets: {
@@ -129,7 +129,64 @@ inventory is from <i>Johnson's (2014) 120-item IPIP NEO-PI-R</i>.`,
     next: 'Weiter',
     back: 'Zurück',
     more: 'Mehr',
-    seeResults: 'Ergebnisse sehen'
+    seeResults: 'Ergebnisse sehen',
+    fullNameLabel: 'Vollständiger Name',
+    fullNamePlaceholder: 'Geben Sie Ihren vollständigen Namen ein',
+    fullNameRequired:
+      'Bitte geben Sie Ihren vollständigen Namen ein (mindestens 2 Zeichen)',
+    nameStepTitle: 'Before you begin',
+    nameStepHint:
+      'All fields are required before the 120 questions. Your answers are stored with your result when you finish.',
+    continueToTest: 'Continue to the test',
+    intake_required_marker: '*',
+    intake_all_required: 'Please complete every required field on this step before continuing.',
+    intake_middle_name_help:
+      'If you have no middle name, enter N/A or —.',
+    intake_incomplete_profile:
+      'Your saved profile is incomplete. Clear saved progress and start again from the beginning to enter every required field.',
+    intake_clear_restart: 'Clear saved progress and restart',
+    intake_step_progress: 'Step {step} of {total}',
+    intake_step_name: 'Your name',
+    intake_step_demo: 'Demographics',
+    intake_step_location: 'Location',
+    intake_step_interests: 'Skills & interests',
+    intake_first_name: 'First name',
+    intake_middle_name: 'Middle name',
+    intake_last_name: 'Last name',
+    intake_optional: 'Optional',
+    intake_next: 'Next',
+    intake_back: 'Back',
+    intake_age: 'Age',
+    intake_age_placeholder: 'e.g. 32',
+    intake_sex: 'Sex / gender',
+    intake_sex_female: 'Female',
+    intake_sex_male: 'Male',
+    intake_sex_non_binary: 'Non-binary',
+    intake_sex_other: 'Other',
+    intake_prefer_not: 'Prefer not to say',
+    intake_marital: 'Marital or relationship status',
+    intake_marital_single: 'Single',
+    intake_marital_partnered: 'Partnered / in a relationship',
+    intake_marital_married: 'Married',
+    intake_marital_divorced: 'Divorced or separated',
+    intake_marital_widowed: 'Widowed',
+    intake_occupation: 'Occupation or role',
+    intake_education: 'Highest education level',
+    intake_edu_less_hs: 'Less than high school',
+    intake_edu_hs: 'High school or equivalent',
+    intake_edu_some_college: 'Some college',
+    intake_edu_bachelor: "Bachelor's degree",
+    intake_edu_master: "Master's degree",
+    intake_edu_doctorate: 'Doctorate / professional degree',
+    intake_edu_vocational: 'Vocational / trade training',
+    intake_ethnic: 'Ethnic or cultural background',
+    intake_ethnic_placeholder: 'How you describe your background',
+    intake_city: 'City',
+    intake_country: 'Country',
+    intake_skills: 'Skills & expertise',
+    intake_hobbies: 'Hobbies & interests',
+    intake_list_hint: 'Comma-separated only, e.g. Python, public speaking, design',
+    intake_select_placeholder: 'Choose one'
   },
   big_five: {
     title: 'Was sind die Big Five?',
@@ -178,28 +235,12 @@ inventory is from <i>Johnson's (2014) 120-item IPIP NEO-PI-R</i>.`,
         'Erfahren Sie mehr über die Dimension Neurotizismus im Big Five Modell'
     }
   },
-  getCompare: {
-    title: 'Vergleichen Sie Personen oder Teams',
-    description1:
-      'Vergleichen Sie Ihre Ergebnisse des BigFive Persönlichkeitstests mit verschiedenen Teilnehmern.',
-    description2: 'Geben Sie die ID Ihrer Testergebnisse ein, z.B.',
-    description3: 'in das ID-Eingabefeld',
-    needToAddPeople: 'Sie müssen Personen hinzufügen um sie zu vergleichen',
-    addAnother: 'Noch eine Person hinzufügen',
-    addPerson: 'Eine Person hinzufügen',
-    comparePeople: 'Personen vergleichen',
-    nameOfPerson: 'Name der Person',
-    urlOrId: 'URL oder ID für den Vergleich',
-    name: 'Name'
-  },
   results: {
     theBigFive: 'Die BigFive',
     score: 'Punkte',
     important: 'Wichtig!',
     saveResults:
       'Speichern Sie die folgende ID, um Ihre Ergebnisse später abzurufen oder um',
-    compare: 'zu vergleichen',
-    toOthers: 'sich mit anderen',
     seo: {
       title: 'Meine Ergebnisse des BigFive Persönlichkeitstest',
       description:

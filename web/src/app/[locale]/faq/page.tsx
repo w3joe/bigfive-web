@@ -7,7 +7,7 @@ export default function FaqPage() {
     {
       question: 'I got an error on this website',
       answer:
-        'Submit an issue at GitHub or send us an e-mail at bigfive-test@rubynor.com'
+        'Submit an issue on the OpenFlo GitHub repository or email hello@runonflow.com'
     },
     {
       question: 'Can I use the code for this website for Commercial Purposes?',
@@ -26,7 +26,7 @@ export default function FaqPage() {
     {
       question: 'I want to translate the questions to my language',
       answer:
-        "Use this website to translate the questions. Select the language you want to translate from.Translate the questions and click 'generate'. This will generate a file and download it to your computer. Send the downloaded file to bigfive- test@rubynor.com and tell us which language you have translated. If you want to translate it directly on github instead, you can follow the description here."
+        "Use this website to translate the questions. Select the language you want to translate from. Translate the questions and click 'generate'. This will generate a file and download it to your computer. Send the downloaded file to hello@runonflow.com and tell us which language you have translated. If you want to translate it directly on GitHub instead, you can follow the description in the OpenFlo repo."
     },
     {
       question: 'I want to translate the result text to my language',
@@ -45,7 +45,7 @@ export default function FaqPage() {
     },
     {
       question: 'Where can I find the code?',
-      answer: 'The code is found here at GitHub.'
+      answer: 'The app source lives in the OpenFlo repository on GitHub (Onflow-AI/OpenFlo).'
     }
   ];
   return (

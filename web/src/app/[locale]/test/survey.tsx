@@ -14,6 +14,15 @@ import useWindowDimensions from '@/hooks/useWindowDimensions';
 import useTimer from '@/hooks/useTimer';
 import { type Answer } from '@/types';
 import { Card, CardHeader } from '@nextui-org/card';
+import { useTranslations } from 'next-intl';
+import {
+  displayNameFromForm,
+  emptyParticipantForm,
+  formStateToProfile,
+  isParticipantFormFullyValid,
+  participantFromLegacyFullName
+} from '@/lib/participant';
+import { ParticipantIntake } from './participant-intake';
 
 interface SurveyProps {
   questions: Question[];
@@ -24,6 +33,15 @@ interface SurveyProps {
   language: string;
 }
 
+type StoredB5 = {
+  answers?: Answer[];
+  currentQuestionIndex?: number;
+  participant?: Partial<import('@/types').ParticipantFormState>;
+  intakeStep?: number;
+  /** Legacy single-field name */
+  fullName?: string;
+};
+
 export const Survey = ({
   questions,
   nextText,
@@ -33,6 +51,10 @@ export const Survey = ({
   language
 }: SurveyProps) => {
   const router = useRouter();
+  const t = useTranslations('test');
+  const [phase, setPhase] = useState<'name' | 'survey'>('name');
+  const [intakeStep, setIntakeStep] = useState(0);
+  const [participant, setParticipant] = useState(emptyParticipantForm);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questionsPerPage, setQuestionsPerPage] = useState(1);
   const [answers, setAnswers] = useState<Answer[]>([]);
@@ -140,21 +162,31 @@ export const Survey = ({
   }
 
   async function submitTest() {
+    if (!isParticipantFormFullyValid(participant)) {
+      return;
+    }
     setLoading(true);
-    confetti({});
-    const result = await saveTest({
-      testId: 'b5-120',
-      lang: language,
-      invalid: false,
-      timeElapsed: seconds,
-      dateStamp: new Date(),
-      answers
-    });
-    localStorage.removeItem('inProgress');
-    localStorage.removeItem('b5data');
-    console.log(result);
-    localStorage.setItem('resultId', result.id);
-    router.push(`/result/${result.id}`);
+    try {
+      confetti({});
+      const profile = formStateToProfile(participant);
+      const displayName = displayNameFromForm(participant);
+      const result = await saveTest({
+        testId: 'b5-120',
+        lang: language,
+        fullName: displayName.slice(0, 500),
+        participant: profile,
+        invalid: false,
+        timeElapsed: seconds,
+        dateStamp: new Date(),
+        answers
+      });
+      localStorage.removeItem('inProgress');
+      localStorage.removeItem('b5data');
+      localStorage.setItem('resultId', result.id);
+      router.push(`/result/${result.id}`);
+    } finally {
+      setLoading(false);
+    }
   }
 
   function dataInLocalStorage() {
@@ -165,18 +197,47 @@ export const Survey = ({
     localStorage.setItem('inProgress', 'true');
     localStorage.setItem(
       'b5data',
-      JSON.stringify({ answers, currentQuestionIndex })
+      JSON.stringify({
+        answers,
+        currentQuestionIndex,
+        participant,
+        intakeStep,
+        fullName: displayNameFromForm(participant)
+      } satisfies StoredB5)
     );
   }
 
   function restoreDataFromLocalStorage() {
     const data = localStorage.getItem('b5data');
     if (data) {
-      const { answers, currentQuestionIndex } = JSON.parse(data);
-      setAnswers(answers);
-      setCurrentQuestionIndex(currentQuestionIndex);
-      setRestored(true);
+      const parsed = JSON.parse(data) as StoredB5;
+      const a = parsed.answers ?? [];
+      const idx = parsed.currentQuestionIndex ?? 0;
+      setAnswers(a);
+      setCurrentQuestionIndex(idx);
+
+      if (parsed.participant && typeof parsed.participant === 'object') {
+        setParticipant({
+          ...emptyParticipantForm(),
+          ...parsed.participant
+        });
+      } else if (typeof parsed.fullName === 'string' && parsed.fullName.trim()) {
+        setParticipant(participantFromLegacyFullName(parsed.fullName));
+      }
+
+      if (typeof parsed.intakeStep === 'number' && parsed.intakeStep >= 0) {
+        setIntakeStep(parsed.intakeStep);
+      }
+
+      setRestored(a.length > 0);
+      if (a.length > 0) setPhase('survey');
     }
+  }
+
+  function completeIntake() {
+    if (!isParticipantFormFullyValid(participant)) return;
+    setPhase('survey');
+    populateDataInLocalStorage();
   }
 
   function clearDataInLocalStorage() {
@@ -184,6 +245,19 @@ export const Survey = ({
     localStorage.removeItem('inProgress');
     localStorage.removeItem('b5data');
     location.reload();
+  }
+
+  if (phase === 'name') {
+    return (
+      <ParticipantIntake
+        participant={participant}
+        setParticipant={setParticipant}
+        step={intakeStep}
+        setStep={setIntakeStep}
+        onComplete={completeIntake}
+        onPersist={populateDataInLocalStorage}
+      />
+    );
   }
 
   return (
@@ -251,7 +325,15 @@ export const Survey = ({
           </div>
         </div>
       ))}
-      <div className='my-12 space-x-4 inline-flex'>
+      {isTestDone && !isParticipantFormFullyValid(participant) && (
+        <div className='mt-10 mb-6 w-full max-w-lg space-y-4 rounded-xl border border-warning p-4 bg-warning-50 dark:bg-warning-950/30'>
+          <p className='text-default-700 text-sm'>{t('intake_incomplete_profile')}</p>
+          <Button color='warning' variant='flat' onPress={clearDataInLocalStorage}>
+            {t('intake_clear_restart')}
+          </Button>
+        </div>
+      )}
+      <div className='my-12 space-x-4 inline-flex flex-wrap items-center gap-y-3'>
         <Button
           color='primary'
           isDisabled={backButtonDisabled}
@@ -272,7 +354,7 @@ export const Survey = ({
           <Button
             color='secondary'
             onClick={submitTest}
-            disabled={loading}
+            disabled={loading || !isParticipantFormFullyValid(participant)}
             isLoading={loading}
           >
             {resultsText.toUpperCase()}
